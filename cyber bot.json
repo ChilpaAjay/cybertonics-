@@ -1,0 +1,358 @@
+{
+  "intents": [
+    {
+      "intent": "greetings",
+      "examples": [
+        {
+          "text": "hello"
+        },
+        {
+          "text": "hi there"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "hey!! whatsup"
+        },
+        {
+          "text": "hello there"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "questions",
+      "examples": [
+        {
+          "text": "can i ask you a question regarding cyber crime"
+        },
+        {
+          "text": "I want details for cyber crime"
+        },
+        {
+          "text": "can i get details for cyber crime"
+        },
+        {
+          "text": "Need details for cyber crime"
+        },
+        {
+          "text": "I required details for cyber crime"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "cybercrime",
+      "examples": [
+        {
+          "text": "can i get the year wise statistics for cyber crime"
+        },
+        {
+          "text": "I want year wise statistics for cyber crime"
+        },
+        {
+          "text": "Required year wise statistics for cyber crime"
+        },
+        {
+          "text": "cyber crime statistics"
+        },
+        {
+          "text": "year wise cyber crime statistic"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "goodbye",
+      "examples": [
+        {
+          "text": "see you again"
+        },
+        {
+          "text": "thanks"
+        },
+        {
+          "text": "thanks alot"
+        },
+        {
+          "text": "take care"
+        },
+        {
+          "text": "thank you for information"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "info",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "crime info",
+          "synonyms": [
+            "data"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "slot",
+      "parent": "node_3_1590392722241",
+      "variable": "$info",
+      "dialog_node": "slot_2_1590392798856",
+      "previous_sibling": "handler_1_1590392798232"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_3_1590392722241",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1590392798232"
+    },
+    {
+      "type": "slot",
+      "parent": "node_10_1590392825393",
+      "variable": "$info",
+      "dialog_node": "slot_8_1590392957875",
+      "previous_sibling": "handler_2_1590392957186"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_10_1590392825393",
+      "event_name": "focus",
+      "dialog_node": "handler_2_1590392957186"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1590392957875",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1590392957900",
+      "previous_sibling": "handler_10_1590392957900"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1590392957875",
+      "context": {
+        "info": "@info"
+      },
+      "conditions": "@info",
+      "event_name": "input",
+      "dialog_node": "handler_10_1590392957900"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1590392798856",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1590392798876",
+      "previous_sibling": "handler_5_1590392798876"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1590392798856",
+      "context": {
+        "info": "@info"
+      },
+      "conditions": "@info",
+      "event_name": "input",
+      "dialog_node": "handler_5_1590392798876"
+    },
+    {
+      "type": "frame",
+      "title": "Handle crime",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The year wise cyber crime statistics is :"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "sample statistics",
+            "source": "https://factly.in/wp-content/uploads//2015/03/cyber-crimes-in-india_cyber-crimes-in-india.png",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "#cybercrime",
+      "dialog_node": "node_10_1590392825393",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Handle greetings",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "hello there"
+              },
+              {
+                "text": "hi there"
+              },
+              {
+                "text": "hey!!"
+              },
+              {
+                "text": "hello"
+              },
+              {
+                "text": "hi"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#greetings",
+      "dialog_node": "node_3_1590391651778",
+      "previous_sibling": "node_6_1590392600059"
+    },
+    {
+      "type": "standard",
+      "title": "Handle goodbye",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "you are welcome"
+              },
+              {
+                "text": "welcome"
+              },
+              {
+                "text": "my pleasure"
+              },
+              {
+                "text": "you too take care"
+              },
+              {
+                "text": "sure"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#goodbye",
+      "dialog_node": "node_6_1590392600059",
+      "previous_sibling": "node_3_1590392722241"
+    },
+    {
+      "type": "frame",
+      "title": "Handle question",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "yes!! you can ask a question to me"
+              },
+              {
+                "text": "sure i will give the details..Tell me what is your question"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#questions",
+      "dialog_node": "node_3_1590392722241",
+      "previous_sibling": "node_10_1590392825393"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_3_1590391651778",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
